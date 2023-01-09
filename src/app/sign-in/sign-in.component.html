@@ -1,0 +1,56 @@
+<section class="sign-in-page">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Sign In</h1>
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: emailControl.touched && emailControl.invalid,
+        valid: emailControl.touched && emailControl.valid
+      }"
+    >
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Enter your email here"
+        formControlName="email"
+      >
+      <div
+        *ngIf="emailControl.touched && emailControl.invalid"
+        class="form-validation"
+      >
+        <p *ngIf="emailControl.errors.required">Enter your email.</p>
+      </div>
+    </div>
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: passwordControl.touched && passwordControl.invalid,
+        valid: passwordControl.touched && passwordControl.valid
+      }"
+    >
+      <label for="password">Password:</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter your password here"
+        formControlName="password"
+      >
+      <div
+        *ngIf="passwordControl.touched && passwordControl.invalid"
+        class="form-validation"
+      >
+        <p *ngIf="passwordControl.errors.required">Enter your password.</p>
+      </div>
+    </div>
+    <button
+      class="button"
+      type="submit"
+      [disabled]="form.invalid"
+    >Sign In</button>
+    <a
+      [routerLink]="['/', 'sign-up']"
+      class="button"
+    >Create new account</a>
+  </form>
+</section>
