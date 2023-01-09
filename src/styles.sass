@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto')
+
+$white-color: #ffffff
+$black-color: #000000
+$invalid-color: #dc3545
+$valid-color: #38bf26
+
+*
+  box-sizing: border-box
+  margin: 0px
+  padding: 0px
+
+html
+  font-family: 'Roboto', sans-serif
+  font-size: 20px
+
+a
+  color: inherit
+  text-decoration: none
+
+input:-webkit-autofill
+  transition: background-color 600000s 0s, color 600000s 0s
+
+h1
+  text-align: center
+  font-size: 32px
+
+.button
+  background: $black-color
+  color: $white-color
+  font-size: 20px
+  padding: 8px
+  border: 4px solid $black-color
+  cursor: pointer
+  text-align: center
+.button:hover
+  background: $white-color
+  color: $black-color
+.button:disabled
+  cursor: not-allowed
+  opacity: 0.1
+
+.form
+  background-color: $white-color
+  max-width: 600px
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  gap: 20px
+  padding: 40px
+  box-shadow: 0px 0px 28px $black-color
+  .form-control
+    display: flex
+    flex-direction: column
+    gap: 4px
+    label
+      font-weight: bold
+    input
+      padding: 4px
+      font-size: 20px
+      outline: none
+      border: none
+      border-bottom: 2px solid $black-color
+    .form-validation
+      font-size: 16px
+      color: $invalid-color
+  .invalid
+    input
+      border-bottom: 2px solid $invalid-color
+  .valid
+    input
+      border-bottom: 2px solid $valid-color

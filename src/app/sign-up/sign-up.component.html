@@ -1,0 +1,87 @@
+<section class="sign-up-page">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Create New Account</h1>
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: usernameControl.touched && usernameControl.invalid,
+        valid: usernameControl.touched && usernameControl.valid
+      }"
+    >
+      <label for="username">Username:</label>
+      <input
+        id="username"
+        type="text"
+        placeholder="Enter your username here"
+        formControlName="username"
+      >
+      <div
+        *ngIf="usernameControl.touched && usernameControl.invalid"
+        class="form-validation"
+      >
+        <p *ngIf="usernameControl.errors.required">Enter your username.</p>
+        <p *ngIf="usernameControl.errors.minlength && !usernameControl.errors.required">
+          Username length should be at least {{usernameControl.errors.requiredLength}}. Current length is {{usernameControl.errors.actualLength}}.
+        </p>
+        <p *ngIf="usernameControl.errors.invalidUsername && !usernameControl.errors.required">Enter a valid username.</p>
+      </div>
+    </div>
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: emailControl.touched && emailControl.invalid,
+        valid: emailControl.touched && emailControl.valid
+      }"
+    >
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Enter your email here"
+        formControlName="email"
+      >
+      <div
+        *ngIf="emailControl.touched && emailControl.invalid"
+        class="form-validation"
+      >
+        <p *ngIf="emailControl.errors.required">Enter your Email.</p>
+        <p *ngIf="emailControl.errors.invalidEmail && !emailControl.errors.required">Enter a valid Email.</p>
+        <p *ngIf="emailControl.errors.notUniqueEmail && !emailControl.errors.required">This Email already exists. Enter a unique Email.</p>
+      </div>
+    </div>
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: passwordControl.touched && passwordControl.invalid,
+        valid: passwordControl.touched && passwordControl.valid
+      }"
+    >
+      <label for="password">Password:</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter your password here"
+        formControlName="password"
+      >
+      <div
+        *ngIf="passwordControl.touched && passwordControl.invalid"
+        class="form-validation"
+      >
+        <p *ngIf="passwordControl.errors.required">Enter your password.</p>
+        <p *ngIf="passwordControl.errors.minlength && !passwordControl.errors.required">
+          Password length should be at least {{passwordControl.errors.requiredLength}}. Current length is {{passwordControl.errors.actualLength}}.
+        </p>
+        <p *ngIf="passwordControl.errors.invalidPassword && !passwordControl.errors.required">Enter a valid password.</p>
+      </div>
+    </div>
+    <button
+      class="button"
+      type="submit"
+      [disabled]="form.invalid"
+    >Create new account</button>
+    <a
+      [routerLink]="['/', 'sign-in']"
+      class="button"
+    >Sign In</a>
+  </form>
+</section>
