@@ -25,6 +25,10 @@ export class SignUpComponent implements OnInit {
     return this.form.get('password');
   }
 
+  public get repeatedPasswordControl(): AbstractControl {
+    return this.form.get('repeatedPassword');
+  }
+
   constructor(
     private _fb: FormBuilder,
     private _authService: AuthService,
@@ -66,6 +70,10 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
         FormValidators.isValidPassword,
+      ]],
+      repeatedPassword: ['', [
+        Validators.required,
+        FormValidators.isRepeatedPassword,
       ]],
     });
   }

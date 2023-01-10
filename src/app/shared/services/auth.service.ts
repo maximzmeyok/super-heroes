@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { AppComponent } from "src/app/app.component";
 import { LoginData, User } from '../interfaces';
 import { UserService } from "./user.services";
 
