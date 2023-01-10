@@ -1,5 +1,4 @@
 import { FormControl, ValidationErrors } from "@angular/forms";
-import { AppComponent } from "../app.component";
 import { User } from "./interfaces";
 
 export class FormValidators {
@@ -60,6 +59,8 @@ export class FormValidators {
     const onlyAllowedSymbols: boolean = !givenPassword.replace(allowedSymbols, '');
     const isValidPassword: boolean = requiredSymbols.test(givenPassword);
 
+    control.parent?.get('repeatedPassword').updateValueAndValidity();
+
     if (isValidPassword && onlyAllowedSymbols) {
       return null;
     }
@@ -67,4 +68,14 @@ export class FormValidators {
     return {invalidPassword: true};
   }
 
+  static isRepeatedPassword(control: FormControl): ValidationErrors {
+    const givenPassword: string = control.parent?.get('password').value || '';
+    const repeatedPassword: string = control.value || '';
+
+    if (givenPassword === repeatedPassword) {
+      return null;
+    }
+
+    return {isNotRepeatedPassword: true};
+  }
 }

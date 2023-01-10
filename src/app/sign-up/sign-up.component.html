@@ -74,6 +74,28 @@
         <p *ngIf="passwordControl.errors.invalidPassword && !passwordControl.errors.required">Enter a valid password.</p>
       </div>
     </div>
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: repeatedPasswordControl.touched && repeatedPasswordControl.invalid,
+        valid: repeatedPasswordControl.touched && repeatedPasswordControl.valid
+      }"
+    >
+      <label for="repeatedPassword">Repeated password:</label>
+      <input
+        id="repeatedPassword"
+        type="password"
+        placeholder="Repeat your password here"
+        formControlName="repeatedPassword"
+      >
+      <div
+        *ngIf="repeatedPasswordControl.touched && repeatedPasswordControl.invalid"
+        class="form-validation"
+      >
+        <p *ngIf="repeatedPasswordControl.errors.required">Repeat your password.</p>
+        <p *ngIf="repeatedPasswordControl.errors.isNotRepeatedPassword && !repeatedPasswordControl.errors.required">Passwords aren't repeated.</p>
+      </div>
+    </div>
     <button
       class="button"
       type="submit"
