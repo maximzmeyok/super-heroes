@@ -1,6 +1,9 @@
 <section class="sign-in-page">
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Sign In</h1>
+
+    <div class="form-note" *ngIf="message">{{ message }}</div>
+
     <div
       class="form-control"
       [ngClass]="{
@@ -22,6 +25,7 @@
         <p *ngIf="emailControl.errors.required">Enter your email.</p>
       </div>
     </div>
+
     <div
       class="form-control"
       [ngClass]="{
@@ -43,6 +47,7 @@
         <p *ngIf="passwordControl.errors.required">Enter your password.</p>
       </div>
     </div>
+
     <button
       class="button"
       type="submit"

@@ -1,4 +1,4 @@
-import { FormControl, ValidationErrors } from "@angular/forms";
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors } from "@angular/forms";
 import { User } from "./interfaces";
 
 export class FormValidators {
@@ -28,7 +28,7 @@ export class FormValidators {
 
   static isUniqueEmail(control: FormControl): ValidationErrors {
     const givenEmail: string = control.value;
-    const hasUsers: boolean = localStorage.getItem('users') ? true : false;
+    const hasUsers: boolean = !!localStorage.getItem('users');
     const users: User[] = JSON.parse(localStorage.getItem('users'));
 
     let isUniqueEmail: boolean = true;
@@ -69,13 +69,48 @@ export class FormValidators {
   }
 
   static isRepeatedPassword(control: FormControl): ValidationErrors {
-    const givenPassword: string = control.parent?.get('password').value || '';
-    const repeatedPassword: string = control.value || '';
+    const givenPassword: string = control.parent?.get('password').value;
+    const repeatedPassword: string = control.value;
 
     if (givenPassword === repeatedPassword) {
       return null;
     }
 
     return {isNotRepeatedPassword: true};
+  }
+
+  static isUniquePassword(control: FormControl): ValidationErrors {
+    const formData: User = control.parent?.value;
+  
+    if (!formData) {
+      return null;
+    }
+
+    return FormValidators.checkMatches(formData);
+  }
+
+  static checkMatches(formData: User): ValidationErrors {
+    const givenPassword: string = formData.password?.toLocaleLowerCase();
+    const givenUsernameAndEmail: string = `${formData.username} ${formData.email}`.toLocaleLowerCase();
+
+    const isUniquePassword: boolean = !givenUsernameAndEmail.includes(givenPassword);
+
+    if (isUniquePassword) {
+      return null;
+    }
+
+    return {isNotUniquePassword: true};
+  }
+
+  static isValidHeroname(control: FormControl): ValidationErrors {
+    const heronameRegExp: RegExp = new RegExp('^[a-zA-Z]+$');
+    const givenHeroname: string = control.value;
+    const isValidHeroname: boolean = heronameRegExp.test(givenHeroname);
+
+    if (isValidHeroname) {
+      return null;
+    }
+
+    return {invalidHeroname: true};
   }
 }

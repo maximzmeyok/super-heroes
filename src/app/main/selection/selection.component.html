@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="search">
+    <div>ABC</div>
+    <div>
+      <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
+        <div
+          class="form-control"
+          [ngClass]="{
+            invalid: searchControl.touched && searchControl.invalid,
+            valid: searchControl.touched && searchControl.valid
+          }"
+        >
+          <input
+            type="text"
+            formControlName="search"
+            placeholder="Enter your search here"
+          >
+          <div
+            *ngIf="searchControl.touched && searchControl.invalid"
+            class="form-validation"
+          >
+            <p *ngIf="searchControl.errors.invalidHeroname && !searchControl.errors.required">Enter a valid name of hero.</p>
+          </div>
+        </div>
+
+        <button type="submit" class="button" [disabled]="form.invalid">Search</button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="hasRecentSearches" class="search-results">
+    <p *ngFor="let search of recentSearches" (click)="searchFromRecent(search)">{{ search }}</p>
+  </div>
+  <div class="search-results" *ngIf="hasResults">
+    <app-hero-card [hero]="hero" *ngFor="let hero of foundHeroes"></app-hero-card>
+  </div>
+</div>

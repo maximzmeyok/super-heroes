@@ -1,6 +1,7 @@
 <section class="sign-up-page">
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Create New Account</h1>
+
     <div
       class="form-control"
       [ngClass]="{
@@ -26,6 +27,7 @@
         <p *ngIf="usernameControl.errors.invalidUsername && !usernameControl.errors.required">Enter a valid username.</p>
       </div>
     </div>
+    
     <div
       class="form-control"
       [ngClass]="{
@@ -49,6 +51,7 @@
         <p *ngIf="emailControl.errors.notUniqueEmail && !emailControl.errors.required">This Email already exists. Enter a unique Email.</p>
       </div>
     </div>
+
     <div
       class="form-control"
       [ngClass]="{
@@ -72,8 +75,10 @@
           Password length should be at least {{passwordControl.errors.requiredLength}}. Current length is {{passwordControl.errors.actualLength}}.
         </p>
         <p *ngIf="passwordControl.errors.invalidPassword && !passwordControl.errors.required">Enter a valid password.</p>
+        <p *ngIf="passwordControl.errors.isNotUniquePassword && !passwordControl.errors.required">Password shoudn't contain parts of username or Email.</p>
       </div>
     </div>
+
     <div
       class="form-control"
       [ngClass]="{
@@ -96,6 +101,7 @@
         <p *ngIf="repeatedPasswordControl.errors.isNotRepeatedPassword && !repeatedPasswordControl.errors.required">Passwords aren't repeated.</p>
       </div>
     </div>
+
     <button
       class="button"
       type="submit"

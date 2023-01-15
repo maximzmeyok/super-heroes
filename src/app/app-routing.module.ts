@@ -2,12 +2,17 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MainLayoutComponent } from './main/main-layout/main-layout.component';
+import { AuthGuard } from './shared/services/auth.guard';
+import { SelectionComponent } from './main/selection/selection.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'main', component: SignInComponent},
+  {path: 'main', component: MainLayoutComponent, canActivate: [AuthGuard], children: [
+    {path: 'selection', component: SelectionComponent},
+  ]},
 ];
 
 @NgModule({
