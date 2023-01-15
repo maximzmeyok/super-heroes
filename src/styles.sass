@@ -49,24 +49,28 @@ h1
   gap: 20px
   padding: 40px
   box-shadow: 0px 0px 28px $black-color
-  .form-control
-    display: flex
-    flex-direction: column
-    gap: 4px
-    label
-      font-weight: bold
-    input
-      padding: 4px
-      font-size: 20px
-      outline: none
-      border: none
-      border-bottom: 2px solid $black-color
-    .form-validation
-      font-size: 16px
-      color: $invalid-color
-  .invalid
-    input
-      border-bottom: 2px solid $invalid-color
-  .valid
-    input
-      border-bottom: 2px solid $valid-color
+  
+.form-control
+  display: flex
+  flex-direction: column
+  label
+    font-weight: bold
+  input
+    padding: 4px
+    font-size: 20px
+    outline: none
+    border: none
+    border-bottom: 2px solid $black-color
+  .form-validation
+    font-size: 16px
+    color: $invalid-color
+.invalid
+  input
+    border-bottom: 2px solid $invalid-color
+.valid
+  input
+    border-bottom: 2px solid $valid-color
+.form-note
+  padding: 8px
+  background: lighten($invalid-color, 20%)
+  color: $white-color

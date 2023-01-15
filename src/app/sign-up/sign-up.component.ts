@@ -70,6 +70,7 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
         FormValidators.isValidPassword,
+        FormValidators.isUniquePassword,
       ]],
       repeatedPassword: ['', [
         Validators.required,

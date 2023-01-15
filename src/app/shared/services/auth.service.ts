@@ -12,11 +12,14 @@ export class AuthService {
     let isWrongLoginData: boolean = true;
 
     this._userService.users.forEach((user: User): void => {
-      const isRightEmailAndPassword: boolean = user.email === loginData.email && user.password === loginData.password;
+      const isWrongEmailAndPassword: boolean = user.email !== loginData.email || user.password !== loginData.password;
 
-      if (isRightEmailAndPassword) {
-        isWrongLoginData = false;
+      if (isWrongEmailAndPassword) {
+        return;
       }
+
+      this._setToken(loginData);
+      isWrongLoginData = false;
     });
 
     return isWrongLoginData;
@@ -28,5 +31,26 @@ export class AuthService {
     const users: string = JSON.stringify(this._userService.users);
 
     localStorage.setItem('users', users);
+  }
+
+  public isValidToken(): boolean {
+    const expirationDate: number = this._userService.currentUser?.expirationDate;
+    
+    return expirationDate > Date.now();
+  }
+
+  public hasNotCurrentUser(): boolean {
+    return !this._userService.currentUser;
+  }
+
+  private _setToken(loginData: LoginData): void {
+    const tokenTime: number = 3600000;
+
+    this._userService.currentUser = {
+      ...loginData,
+      expirationDate: Date.now() + tokenTime,
+    }
+
+    localStorage.setItem('currentUser', JSON.stringify(this._userService.currentUser));
   }
 }

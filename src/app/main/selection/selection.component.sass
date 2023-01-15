@@ -1,0 +1,35 @@
+@import '../../../styles'
+
+.container
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  gap: 20px
+  padding: 20px
+  .search
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background: $white-color
+    padding: 32px
+    gap: 20px
+    box-shadow: 0 0 28px $black-color
+    .search-form
+      display: flex
+      justify-content: space-between
+      align-items: center
+      gap: 8px
+  .search-results
+    background: $white-color
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: center
+    gap: 20px
+    padding: 32px
+    box-shadow: 0 0 28px $black-color
+    p
+      cursor: pointer
+    p:hover
+      font-weight: 700
