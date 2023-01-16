@@ -17,4 +17,9 @@ export class UserService {
     this.recentSearches.push(searchValue);
     localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
   }
+
+  public deleteRecentSearch(recentSearch: string): void {
+    this.recentSearches = this.recentSearches.filter((item: string) => item !== recentSearch);
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+  }
 }

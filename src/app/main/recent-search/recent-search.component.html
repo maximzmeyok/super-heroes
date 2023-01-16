@@ -1,0 +1,15 @@
+<div
+  (mouseenter)="toggleDeleteButton()"
+  (mouseleave)="toggleDeleteButton()"
+  class="recent-search-wrapper"
+>
+  <div
+    class="recent-search"
+    (click)="searchFromRecent(recentSearch)"
+  >{{ recentSearch }}</div>
+  <div
+    class="delete-button"
+    (click)="deleteSearch(recentSearch)"
+    *ngIf="isVisibleDelete"
+  >❌</div>
+</div>

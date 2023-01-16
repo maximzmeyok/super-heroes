@@ -15,6 +15,7 @@ import { HeroesService } from './shared/services/heroes.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
 import { AlphabetSelectComponent } from './main/alphabet-select/alphabet-select.component';
+import { RecentSearchComponent } from './main/recent-search/recent-search.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AlphabetSelectComponent } from './main/alphabet-select/alphabet-select.
     SelectionComponent,
     HeroCardComponent,
     AlphabetSelectComponent,
+    RecentSearchComponent,
   ],
   imports: [
     BrowserModule,
