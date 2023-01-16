@@ -33,7 +33,12 @@
     </div>
   </div>
   <div *ngIf="hasRecentSearches" class="search-results">
-    <p *ngFor="let search of recentSearches" (click)="searchFromRecent(search)">{{ search }}</p>
+    <!-- <p *ngFor="let search of recentSearches" (click)="searchFromRecent(search)">{{ search }}</p> -->
+    <app-recent-search
+      [recentSearch]="recentSearch"
+      (onSearchClick)="searchFromRecent($event)"
+      *ngFor="let recentSearch of recentSearches"
+    ></app-recent-search>
   </div>
   <div class="search-results" *ngIf="hasResults">
     <app-hero-card [hero]="hero" *ngFor="let hero of foundHeroes"></app-hero-card>
