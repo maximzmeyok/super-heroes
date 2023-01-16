@@ -13,6 +13,8 @@ import { UserService } from 'src/app/shared/services/user.services';
 })
 export class SelectionComponent implements OnInit {
   public form: FormGroup;
+  public isVisibleAlphabet: boolean = false;
+  public alphabetButtonLetter: string = 'A';
 
   public get searchControl(): AbstractControl {
     return this.form.get('search');
@@ -61,8 +63,19 @@ export class SelectionComponent implements OnInit {
     });
   }
 
-  public searchFromRecent(search: string) {
+  public searchFromRecent(search: string): void {
     this.searchControl.setValue(search);
+    this.submit();
+  }
+
+  public toggleAlphabet(): void {
+    this.isVisibleAlphabet = !this.isVisibleAlphabet;
+  }
+
+  public searchByLetter(letter: string): void {
+    this.alphabetButtonLetter = letter;
+    this.toggleAlphabet();
+    this.searchControl.setValue(letter);
     this.submit();
   }
 

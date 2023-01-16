@@ -1,6 +1,11 @@
 <div class="container">
   <div class="search">
-    <div>ABC</div>
+    <div class="alphabet-button" (click)="toggleAlphabet()">
+      <p>{{ alphabetButtonLetter }}</p>
+    </div>
+    <div *ngIf="isVisibleAlphabet" class="alphabet-wrapper">
+      <app-alphabet-select (onLetterClick)="searchByLetter($event)"></app-alphabet-select>
+    </div>
     <div>
       <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
         <div
