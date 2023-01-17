@@ -79,6 +79,14 @@ export class SelectionComponent implements OnInit {
     this.submit();
   }
 
+  public trackHeroesByFn(index: number, hero: Hero): string {
+    return hero.id;
+  }
+
+  public trackSearchesByFn(index: number, item: string): string {
+    return item;
+  }
+
   private _initForm(): void {
     this.form = this._fb.group({
       search: ['', [

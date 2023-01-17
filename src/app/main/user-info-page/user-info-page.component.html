@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="tabs">
+      <p class="tab" (click)="showHeroesList()" [ngClass]="{
+        active: currentTap === 'heroesList',
+        inactive: currentTap !== 'heroesList'
+      }">User Heroes List</p>
+      <p class="tab" (click)="showBattlesHistory()" [ngClass]="{
+        active: currentTap === 'battlesHistory',
+        inactive: currentTap !== 'battlesHistory'
+      }">Battles history</p>
+      <p class="tab" (click)="showPowerUps()" [ngClass]="{
+        active: currentTap === 'powerUps',
+        inactive: currentTap !== 'powerUps'
+      }">Power Ups</p>
+    </div>
+    <div class="information" [ngSwitch]="currentTap">
+      <app-heroes-list *ngSwitchCase="'heroesList'"></app-heroes-list>
+      <app-battles-history *ngSwitchCase="'battlesHistory'"></app-battles-history>
+      <app-power-ups *ngSwitchCase="'powerUps'"></app-power-ups>
+    </div>
+  </div>
+</div>

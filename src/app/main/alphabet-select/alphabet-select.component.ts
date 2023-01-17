@@ -14,4 +14,8 @@ export class AlphabetSelectComponent {
   public searchByLetter(letter: string): void {
     this.onLetterClick.emit(letter);
   }
+
+  public trackLettersByFn(index: number, item: string): string {
+    return item;
+  }
 }
