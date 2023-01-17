@@ -1,1 +1,18 @@
-<p>battles-history works!</p>
+<table>
+  <thead>
+    <tr>
+      <th (click)="sortBattlesByDate()">Battle date and time</th>
+      <th (click)="sortBattlesByHeroName()">Hero name</th>
+      <th (click)="sortBattlesByEnemyName()">Opponent name</th>
+      <th (click)="sortBattlesByResult()">Battle result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let battle of battlesHistory; trackBy: trackBattlesByFn">
+      <td>{{ battle.date | date: 'medium' }}</td>
+      <td>{{ battle.heroName }}</td>
+      <td>{{ battle.enemyName }}</td>
+      <td>{{ battle.result }}</td>
+    </tr>
+  </tbody>
+</table>
