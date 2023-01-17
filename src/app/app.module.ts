@@ -16,6 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
 import { AlphabetSelectComponent } from './main/alphabet-select/alphabet-select.component';
 import { RecentSearchComponent } from './main/recent-search/recent-search.component';
+import { UserInfoPageComponent } from './main/user-info-page/user-info-page.component';
+import { HeroesListComponent } from './main/heroes-list/heroes-list.component';
+import { BattlesHistoryComponent } from './main/battles-history/battles-history.component';
+import { PowerUpsComponent } from './main/power-ups/power-ups.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { RecentSearchComponent } from './main/recent-search/recent-search.compon
     HeroCardComponent,
     AlphabetSelectComponent,
     RecentSearchComponent,
+    UserInfoPageComponent,
+    HeroesListComponent,
+    BattlesHistoryComponent,
+    PowerUpsComponent,
   ],
   imports: [
     BrowserModule,
