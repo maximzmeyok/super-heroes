@@ -1,1 +1,10 @@
-<p>power-ups works!</p>
+<div class="powerup-cards">
+  <div class="powerup-card" *ngFor="let powerUp of powerUps; trackBy: trackPowerUpsByFn">
+    <h2>{{ powerUp.name }}</h2>
+    <div>
+      <img src="{{ powerUp.image }}" alt="">
+    </div>
+    <p>{{ powerUp.powerstatName | titlecase }}: +{{ powerUp.powerstatValue }}</p>
+    <p>Uses left: {{ powerUp.value }}</p>
+  </div>
+</div>

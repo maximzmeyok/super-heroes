@@ -32,3 +32,18 @@ export interface Hero {
   connections: object;
   image: any;
 }
+
+export interface BattleResult {
+  date: number;
+  heroName: string;
+  enemyName: string;
+  result: string;
+}
+
+export interface PowerUp {
+  name: string;
+  powerstatName: string;
+  powerstatValue: string;
+  value: number;
+  image: string;
+}
