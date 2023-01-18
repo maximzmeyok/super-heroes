@@ -26,10 +26,10 @@ export interface Hero {
   id: string;
   name: string;
   powerstats: any;
-  biography: object;
-  appearance: object;
-  work: object;
-  connections: object;
+  appearance: any;
+  biography: any;
+  work: any;
+  connections: any;
   image: any;
 }
 

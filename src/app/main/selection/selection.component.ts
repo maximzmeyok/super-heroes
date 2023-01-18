@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent } from '@angular/router';
 import { FormValidators } from 'src/app/shared/form.validators';
 import { ApiResponse, Hero } from 'src/app/shared/interfaces';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
@@ -15,6 +16,7 @@ export class SelectionComponent implements OnInit {
   public form: FormGroup;
   public isVisibleAlphabet: boolean = false;
   public alphabetButtonLetter: string = 'A';
+  public message: string;
 
   public get searchControl(): AbstractControl {
     return this.form.get('search');
@@ -41,9 +43,13 @@ export class SelectionComponent implements OnInit {
     private _heroesService: HeroesService,
     private _cd: ChangeDetectorRef,
     private _userService: UserService,
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router,
   ) { }
 
   public ngOnInit(): void {
+    this._checkQueryParams();;
+    this._initRouter();
     this._initForm();
   }
 
@@ -93,6 +99,37 @@ export class SelectionComponent implements OnInit {
         Validators.required,
         FormValidators.isValidHeroname,
       ]],
+    });
+  }
+
+  private _initRouter(): void {
+    this._router.events.subscribe((event: RouterEvent): void => {
+      const isNavigationEnd: boolean = event instanceof NavigationEnd;
+
+      if (!isNavigationEnd) {
+        return;
+      }
+
+      const hasSelectedHero: boolean = !event.url.endsWith('hasNotSelectedHero=true');
+      const isSelectionPage: boolean = event.url.endsWith('selection');
+
+      if (hasSelectedHero && !isSelectionPage) {
+        return;
+      }
+
+      if (isSelectionPage) {
+        this.message = '';
+      }
+
+      this._cd.markForCheck();
+    });
+  }
+
+  private _checkQueryParams(): void {
+    this._activatedRoute.queryParams.subscribe((params: Params) => {
+      if (params.hasNotSelectedHero) {
+        this.message = "You don't have any heroes to fight! Please, choose heroes here and go fight!";
+      }
     });
   }
 }

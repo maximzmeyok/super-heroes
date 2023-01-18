@@ -19,5 +19,5 @@
       <li>Combat {{ hero.powerstats.combat }}</li>
     </ul>
   </div>
-  <button class="button">View hero</button>
+  <button class="button" [routerLink]="['/main/hero', hero.id]">View hero</button>
 </div>

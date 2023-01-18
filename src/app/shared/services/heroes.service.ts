@@ -48,6 +48,12 @@ export class HeroesService {
     this._updateSelectedHero(this.selectedHero.id);
   }
 
+  public getHeroById(heroId: string): Observable<Hero> {
+    const url: string = `https://www.superheroapi.com/api.php/${this._accessToken}/${heroId}`;
+
+    return this._http.get<Hero>(url);
+  }
+
   private _updateSelectedHero(heroId: string): void {
     const heroIndex: number = this.foundHeroes.findIndex((foundHero: Hero) => foundHero.id === heroId);
 

@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="fight-note" *ngIf="message">{{ message }}</div>
   <div class="search">
     <div class="alphabet-button" (click)="toggleAlphabet()">
       <p>{{ alphabetButtonLetter }}</p>
@@ -32,7 +33,7 @@
       </form>
     </div>
   </div>
-  <div *ngIf="hasRecentSearches" class="search-results">
+  <div *ngIf="hasRecentSearches" class="recent-searches">
     <app-recent-search
       [recentSearch]="recentSearch"
       (onSearchClick)="searchFromRecent($event)"

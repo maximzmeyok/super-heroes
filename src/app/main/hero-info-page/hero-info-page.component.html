@@ -1,0 +1,45 @@
+<div class="container" *ngIf="hero$ | async as hero">
+  <div class="hero-image">
+    <img src="{{ hero.image.url }}" alt="">
+  </div>
+  <div class="hero-info">
+    <h2>{{ hero.name }}</h2>
+    <div>
+      <h3>powerstats</h3>
+      <p>intelligence: {{ hero.powerstats.intelligence }}</p>
+      <p>strength: {{ hero.powerstats.strength }}</p>
+      <p>speed: {{ hero.powerstats.speed }}</p>
+      <p>durability: {{ hero.powerstats.durability }}</p>
+      <p>power: {{ hero.powerstats.power }}</p>
+      <p>combat: {{ hero.powerstats.combat }}</p>
+    </div>
+    <div>
+      <h3>biography</h3>
+      <p>full-name: {{ hero.biography['full-name'] }}</p>
+      <p>alter-egos: {{ hero.biography['alter-egos'] }}</p>
+      <p>aliases: {{ hero.biography.aliases }}</p>
+      <p>place-of-birth: {{ hero.biography['place-of-birth'] }}</p>
+      <p>first-appearance: {{ hero.biography['first-appearance'] }}</p>
+      <p>publisher: {{ hero.biography.publisher }}</p>
+      <p>alignment: {{ hero.biography.alignment }}</p>
+  </div>
+  <div>
+    <h3>appearance</h3>
+    <p>gender: {{ hero.biography.gender }}</p>
+    <p>race: {{ hero.biography.race }}</p>
+    <p>height: {{ hero.biography.height }}</p>
+    <p>weight: {{ hero.biography.weight }}</p>
+    <p>eye-color: {{ hero.biography['eye-color'] }}</p>
+    <p>hair-color: {{ hero.biography['hair-color'] }}</p>
+</div>
+<div>
+  <h3>work</h3>
+  <p>occupation: {{ hero.work.occupation }}</p>
+  <p>base: {{ hero.work.base }}</p>
+</div>
+<div>
+  <h3>connections</h3>
+  <p>group-affiliation: {{ hero.connections['group-affiliation'] }}</p>
+  <p>relatives: {{ hero.connections.relatives }}</p>
+</div>
+</div>
