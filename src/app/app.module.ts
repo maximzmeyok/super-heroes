@@ -22,6 +22,9 @@ import { BattlesHistoryComponent } from './main/battles-history/battles-history.
 import { PowerUpsComponent } from './main/power-ups/power-ups.component';
 import { BattleService } from './shared/services/battle.service';
 import { PowerUpsService } from './shared/services/power-ups.service';
+import { HeroInfoPageComponent } from './main/hero-info-page/hero-info-page.component';
+import { BattlePageComponent } from './main/battle-page/battle-page.component';
+import { BattleGuard } from './shared/services/battle.guard';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { PowerUpsService } from './shared/services/power-ups.service';
     HeroesListComponent,
     BattlesHistoryComponent,
     PowerUpsComponent,
+    HeroInfoPageComponent,
+    BattlePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,7 @@ import { PowerUpsService } from './shared/services/power-ups.service';
     HeroesService,
     BattleService,
     PowerUpsService,
+    BattleGuard,
   ],
   bootstrap: [AppComponent]
 })
