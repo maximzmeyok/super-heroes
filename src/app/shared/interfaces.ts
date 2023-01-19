@@ -23,6 +23,7 @@ export interface ApiResponse {
 }
 
 export interface Hero {
+  response?: string
   id: string;
   name: string;
   powerstats: any;

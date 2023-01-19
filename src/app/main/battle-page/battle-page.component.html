@@ -1,1 +1,45 @@
-<p>battle-page works!</p>
+<div class="wrapper">
+  <div class="card">
+    <a [routerLink]="">
+      <img src="{{ selectedHero.image.url }}" alt="">
+    </a>
+    <h3>{{ selectedHero.name }}</h3>
+    <p>intelligence: {{ selectedHero.powerstats.intelligence }}</p>
+    <p>strength: {{ selectedHero.powerstats.strength }}</p>
+    <p>speed: {{ selectedHero.powerstats.speed }}</p>
+    <p>durability: {{ selectedHero.powerstats.durability }}</p>
+    <p>power: {{ selectedHero.powerstats.power }}</p>
+    <p>combat: {{ selectedHero.powerstats.combat }}</p>
+  </div>
+  <div class="card">
+    <div class="names">
+      <h2>{{ selectedHero.name }}</h2>
+      <h2> VS</h2>
+      <h2>{{ enemyHero.name }}</h2>
+    </div>
+    <button class="button battle-button">Fight</button>
+    <div class="power-ups">
+      <h3>Power Ups</h3>
+      <p
+        *ngFor="let powerUp of powerUps;
+        trackBy: trackPowerUpsByFn"
+        (click)="selectPowerUp(powerUp.powerstatName)"
+        [class.selected]="isSelected(powerUp.powerstatName)"
+      >
+        {{ powerUp.name| titlecase }} ({{ powerUp.value }} left)
+      </p>
+    </div>
+  </div>
+  <div class="card">
+    <a [routerLink]="">
+      <img src="{{ enemyHero.image.url }}" alt="">
+    </a>
+    <h3>{{ enemyHero.name }}</h3>
+    <p>intelligence: {{ enemyHero.powerstats.intelligence }}</p>
+    <p>strength: {{ enemyHero.powerstats.strength }}</p>
+    <p>speed: {{ enemyHero.powerstats.speed }}</p>
+    <p>durability: {{ enemyHero.powerstats.durability }}</p>
+    <p>power: {{ enemyHero.powerstats.power }}</p>
+    <p>combat: {{ enemyHero.powerstats.combat }}</p>
+  </div>
+</div>
