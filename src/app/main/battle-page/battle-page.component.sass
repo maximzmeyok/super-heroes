@@ -1,0 +1,42 @@
+@import '../../../styles'
+
+.wrapper
+  padding: 20px
+  display: flex
+  justify-content: space-around
+  align-items: self-start
+  .card
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    gap: 8px
+    padding: 8px
+    width: 30%
+    max-width: 450px
+    box-shadow: 0 0 28px $black-color
+    background: $white-color
+    img
+      width: 100%
+    p:first-letter
+      text-transform: uppercase
+    .power-ups
+      text-align: center
+      p
+        cursor: pointer
+        padding-top: 8px
+      p:hover
+        font-weight: 700
+      .selected
+        color: $invalid-color
+        font-weight: 700
+    .names
+      text-align: center
+    .battle-button
+      font-size: 28px
+      background: $invalid-color
+      border-color: $invalid-color
+    .battle-button:hover
+      background: $white-color
+      border-color: $invalid-color
+      color: $invalid-color
