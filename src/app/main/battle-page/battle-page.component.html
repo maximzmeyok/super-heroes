@@ -34,12 +34,12 @@
         <img src="{{ selectedHero.image.url }}" alt="">
       </a>
       <h3>{{ selectedHero.name }}</h3>
-      <p>intelligence: {{ selectedHero.powerstats.intelligence }}</p>
-      <p>strength: {{ selectedHero.powerstats.strength }}</p>
-      <p>speed: {{ selectedHero.powerstats.speed }}</p>
-      <p>durability: {{ selectedHero.powerstats.durability }}</p>
-      <p>power: {{ selectedHero.powerstats.power }}</p>
-      <p>combat: {{ selectedHero.powerstats.combat }}</p>
+      <p [class.upped]="isUpped('intelligence')">intelligence: {{ selectedHero.powerstats.intelligence }}</p>
+      <p [class.upped]="isUpped('strength')">strength: {{ selectedHero.powerstats.strength }}</p>
+      <p [class.upped]="isUpped('speed')">speed: {{ selectedHero.powerstats.speed }}</p>
+      <p [class.upped]="isUpped('durability')">durability: {{ selectedHero.powerstats.durability }}</p>
+      <p [class.upped]="isUpped('power')">power: {{ selectedHero.powerstats.power }}</p>
+      <p [class.upped]="isUpped('combat')">combat: {{ selectedHero.powerstats.combat }}</p>
     </div>
     <div class="card">
       <div class="names">
@@ -58,6 +58,7 @@
           {{ powerUp.name| titlecase }} ({{ powerUp.value }} left)
         </p>
       </div>
+      <button class="button" (click)="replaceEnemy()">Replace the enemy</button>
     </div>
     <div class="card">
       <a [routerLink]="['/main/hero', enemyHero.id]">

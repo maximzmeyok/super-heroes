@@ -50,6 +50,10 @@ export class BattlePageComponent implements OnDestroy {
     return this._battleService.uppedPowerstats.includes(powerstat);
   }
 
+  public isUpped(powerstat: string): boolean {
+    return this._battleService.uppedPowerstats.includes(powerstat);
+  }
+
   public fight(): void {
     this.isFighting = true;
     this._battleService.updatePowerUps();
@@ -65,5 +69,9 @@ export class BattlePageComponent implements OnDestroy {
 
   public closeModal(): void {
     this.hasModal = false;
+  }
+
+  public replaceEnemy(): void {
+    
   }
 }
