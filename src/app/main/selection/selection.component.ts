@@ -17,6 +17,7 @@ export class SelectionComponent implements OnInit {
   public isVisibleAlphabet: boolean = false;
   public alphabetButtonLetter: string = 'A';
   public message: string;
+  public searchingMssage: string;
 
   public get searchControl(): AbstractControl {
     return this.form.get('search');
@@ -57,14 +58,17 @@ export class SelectionComponent implements OnInit {
     const searchValue: string = this.form.value.search;
 
     this._heroesService.getHeroes(searchValue).subscribe((apiResponse: ApiResponse): void => {
-      const responseStatus: string = apiResponse.response;
+      const clearedResponse: Hero[] = apiResponse.results ? this._heroesService.filterHeroes(apiResponse.results) : [];
 
-      if (responseStatus !== 'success') {
+      if (!clearedResponse.length) {
+        this.searchingMssage = 'Nothing was found. Try to enter another request!';
+        this._cd.markForCheck();
         return;
       }
 
+      this.searchingMssage = '';
       this._userService.refreshRecentSearches(searchValue);
-      this._heroesService.foundHeroes = apiResponse.results;
+      this._heroesService.foundHeroes = clearedResponse;
       this._cd.markForCheck();
     });
   }
