@@ -81,12 +81,14 @@ export class HeroesService {
   }
 
   public filterHeroes(foundHeroes: Hero[]): Hero[] {
-    return foundHeroes.filter((foundHero: Hero) => {
-      const powerstatsValues: string[] = Object.values(foundHero.powerstats);
-      const isValidPowerstats: boolean = !powerstatsValues.includes('null');
-      
-      return isValidPowerstats;
-    });
+    return foundHeroes.filter((foundHero: Hero) => this.isValidHero(foundHero));
+  }
+
+  public isValidHero(foundHero: Hero): boolean {
+    const powerstatsValues: string[] = Object.values(foundHero.powerstats);
+    const isValidPowerstats: boolean = !powerstatsValues.includes('null');
+    
+    return isValidPowerstats;
   }
 
   private _updateSelectedHero(heroId: string): void {
@@ -99,6 +101,13 @@ export class HeroesService {
     const randomId: string = this._getRandomId(1, 731).toString();
 
     this.getHeroById(randomId).subscribe((apiResponse: Hero): void => {
+      const isValidHero: boolean = this.isValidHero(apiResponse);
+
+      if (!isValidHero) {
+        this._selectEnemyHero();
+        return;
+      }
+
       this.enemyHero = apiResponse;
     });
   }

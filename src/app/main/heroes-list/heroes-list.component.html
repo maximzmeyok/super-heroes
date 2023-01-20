@@ -1,6 +1,6 @@
 <div class="heroes-list" *ngIf="hasResults; else information">
   <app-hero-card [hero]="hero" *ngFor="let hero of ownedHeroes; trackBy: trackHeroesByFn"></app-hero-card>
-  <button class="button">Add new hero</button>
+  <a [routerLink]="['/main', 'selection']" class="button">Add new hero</a>
 </div>
 <ng-template #information>
   <div class="heroes-list">
