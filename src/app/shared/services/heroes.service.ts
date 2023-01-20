@@ -29,6 +29,13 @@ export class HeroesService {
     return this._http.get<Hero>(url);
   }
 
+  public getRandomHero(): Observable<Hero> {
+    const heroId: number = this._getRandomId(1, 731);
+    const url: string = `https://www.superheroapi.com/api.php/${this._accessToken}/${heroId}`;
+
+    return this._http.get<Hero>(url);
+  }
+
   public addToOwned(hero: Hero): void {
     const hasSelectedHero: boolean = !!this.selectedHero;
     const selectedHeroId: string = hasSelectedHero ? this.selectedHero.id : '';
@@ -71,6 +78,15 @@ export class HeroesService {
     const enemyPower: number = this._countPower(this.enemyHero);
 
     return heroPower < enemyPower ? "LOST" : "WON";
+  }
+
+  public filterHeroes(foundHeroes: Hero[]): Hero[] {
+    return foundHeroes.filter((foundHero: Hero) => {
+      const powerstatsValues: string[] = Object.values(foundHero.powerstats);
+      const isValidPowerstats: boolean = !powerstatsValues.includes('null');
+      
+      return isValidPowerstats;
+    });
   }
 
   private _updateSelectedHero(heroId: string): void {

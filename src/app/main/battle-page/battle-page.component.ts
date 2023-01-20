@@ -22,6 +22,14 @@ export class BattlePageComponent implements OnDestroy {
   public get enemyHero(): Hero {
     return this._heroesService.enemyHero;
   }
+  
+  public get heroPowerstats() {
+    return Object.entries(this._heroesService.selectedHero.powerstats);
+  }
+  
+  public get enemyPowerstats() {
+    return Object.entries(this._heroesService.enemyHero.powerstats);
+  }
 
   public get powerUps(): PowerUp[] {
     return this._powerUpsService.sortPowerUps().filter((item: PowerUp): boolean => item.value > 0);
@@ -72,6 +80,15 @@ export class BattlePageComponent implements OnDestroy {
   }
 
   public replaceEnemy(): void {
-    
+    this._heroesService.getRandomHero().subscribe((apiResponse: Hero): void => {
+      const responseStatus: string = apiResponse.response;
+
+      if (responseStatus !== 'success') {
+        return;
+      }
+
+      this._heroesService.enemyHero = apiResponse;
+      this._cd.markForCheck();
+    });
   }
 }

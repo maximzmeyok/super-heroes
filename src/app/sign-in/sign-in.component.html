@@ -2,7 +2,7 @@
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Sign In</h1>
 
-    <div class="form-note" *ngIf="message">{{ message }}</div>
+    <div class="error-note" *ngIf="message">{{ message }}</div>
 
     <div
       class="form-control"

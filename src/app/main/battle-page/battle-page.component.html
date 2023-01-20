@@ -34,12 +34,7 @@
         <img src="{{ selectedHero.image.url }}" alt="">
       </a>
       <h3>{{ selectedHero.name }}</h3>
-      <p [class.upped]="isUpped('intelligence')">intelligence: {{ selectedHero.powerstats.intelligence }}</p>
-      <p [class.upped]="isUpped('strength')">strength: {{ selectedHero.powerstats.strength }}</p>
-      <p [class.upped]="isUpped('speed')">speed: {{ selectedHero.powerstats.speed }}</p>
-      <p [class.upped]="isUpped('durability')">durability: {{ selectedHero.powerstats.durability }}</p>
-      <p [class.upped]="isUpped('power')">power: {{ selectedHero.powerstats.power }}</p>
-      <p [class.upped]="isUpped('combat')">combat: {{ selectedHero.powerstats.combat }}</p>
+      <p *ngFor="let powerstat of heroPowerstats" [class.upped]="isUpped(powerstat[0])">{{ powerstat[0] }}: {{ powerstat[1] }}</p>
     </div>
     <div class="card">
       <div class="names">
@@ -65,12 +60,7 @@
         <img src="{{ enemyHero.image.url }}" alt="">
       </a>
       <h3>{{ enemyHero.name }}</h3>
-      <p>intelligence: {{ enemyHero.powerstats.intelligence }}</p>
-      <p>strength: {{ enemyHero.powerstats.strength }}</p>
-      <p>speed: {{ enemyHero.powerstats.speed }}</p>
-      <p>durability: {{ enemyHero.powerstats.durability }}</p>
-      <p>power: {{ enemyHero.powerstats.power }}</p>
-      <p>combat: {{ enemyHero.powerstats.combat }}</p>
+      <p *ngFor="let powerstat of enemyPowerstats">{{ powerstat[0] }}: {{ powerstat[1] }}</p>
     </div>
   </ng-template>
 </div>

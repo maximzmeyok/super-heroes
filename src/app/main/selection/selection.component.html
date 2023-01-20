@@ -1,38 +1,40 @@
 <div class="container">
-  <div class="fight-note" *ngIf="message">{{ message }}</div>
-  <div class="search">
-    <div class="alphabet-button" (click)="toggleAlphabet()">
-      <p>{{ alphabetButtonLetter }}</p>
-    </div>
-    <div *ngIf="isVisibleAlphabet" class="alphabet-wrapper">
-      <app-alphabet-select (onLetterClick)="searchByLetter($event)"></app-alphabet-select>
-    </div>
-    <div>
-      <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
-        <div
-          class="form-control"
-          [ngClass]="{
-            invalid: searchControl.touched && searchControl.invalid,
-            valid: searchControl.touched && searchControl.valid
-          }"
-        >
-          <input
-            type="text"
-            formControlName="search"
-            placeholder="Enter your search here"
-          >
+  <div class="error-note" *ngIf="message">{{ message }}</div>
+  <div class="search-wrapper">
+    <div class="search">
+      <div class="alphabet-button" (click)="toggleAlphabet()">
+        <p>{{ alphabetButtonLetter }}</p>
+      </div>
+      <div *ngIf="isVisibleAlphabet" class="alphabet-wrapper">
+        <app-alphabet-select (onLetterClick)="searchByLetter($event)"></app-alphabet-select>
+      </div>
+      <div>
+        <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
           <div
-            *ngIf="searchControl.touched && searchControl.invalid"
-            class="form-validation"
+            class="form-control"
+            [ngClass]="{
+              invalid: searchControl.touched && searchControl.invalid,
+              valid: searchControl.touched && searchControl.valid
+            }"
           >
-            <p *ngIf="searchControl.errors.invalidHeroname && !searchControl.errors.required">Enter a valid name of hero.</p>
+            <input
+              type="text"
+              formControlName="search"
+              placeholder="Enter your search here"
+            >
+            <div
+              *ngIf="searchControl.touched && searchControl.invalid"
+              class="form-validation"
+            >
+              <p *ngIf="searchControl.errors.invalidHeroname && !searchControl.errors.required">Enter a valid name of hero.</p>
+            </div>
           </div>
-        </div>
-
-        <button type="submit" class="button" [disabled]="form.invalid">Search</button>
-      </form>
+  
+          <button type="submit" class="button" [disabled]="form.invalid">Search</button>
+        </form>
+      </div>
     </div>
-  </div>
+    <div *ngIf="searchingMssage" class="error-note">{{ searchingMssage }}</div></div>
   <div *ngIf="hasRecentSearches" class="recent-searches">
     <app-recent-search
       [recentSearch]="recentSearch"
