@@ -66,6 +66,13 @@ export class HeroesService {
     this.selectedHero.powerstats[`${powerstat}`] = +this.selectedHero.powerstats[`${powerstat}`] - 10;
   }
 
+  public compareHeroes(): string {
+    const heroPower: number = this._countPower(this.selectedHero);
+    const enemyPower: number = this._countPower(this.enemyHero);
+
+    return heroPower < enemyPower ? "LOST" : "WON";
+  }
+
   private _updateSelectedHero(heroId: string): void {
     const heroIndex: number = this.foundHeroes.findIndex((foundHero: Hero) => foundHero.id === heroId);
 
@@ -82,5 +89,12 @@ export class HeroesService {
 
   private _getRandomId(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  private _countPower(hero: Hero): number {
+    const powerstats: string[] = Object.values(hero.powerstats);
+    const power: number = powerstats.reduce((sum: number, powerstat:string): number => sum + +powerstat, 0);
+
+    return power;
   }
 }

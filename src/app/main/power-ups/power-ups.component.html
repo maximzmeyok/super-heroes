@@ -1,5 +1,5 @@
 <div class="powerup-cards">
-  <div class="powerup-card" *ngFor="let powerUp of powerUps; trackBy: trackPowerUpsByFn">
+  <div class="powerup-card" *ngFor="let powerUp of allPowerUps; trackBy: trackPowerUpsByFn">
     <h2>{{ powerUp.name }}</h2>
     <div>
       <img src="{{ powerUp.image }}" alt="">

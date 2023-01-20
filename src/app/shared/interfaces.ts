@@ -37,7 +37,9 @@ export interface Hero {
 export interface BattleResult {
   date: number;
   heroName: string;
+  heroId: string;
   enemyName: string;
+  enemyId: string;
   result: string;
 }
 

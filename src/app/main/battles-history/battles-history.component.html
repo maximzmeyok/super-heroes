@@ -10,8 +10,18 @@
   <tbody>
     <tr *ngFor="let battle of battlesHistory; trackBy: trackBattlesByFn">
       <td>{{ battle.date | date: 'medium' }}</td>
-      <td>{{ battle.heroName }}</td>
-      <td>{{ battle.enemyName }}</td>
+      <td>
+        <a [routerLink]="['/main/hero', battle.heroId]">
+          <p>
+            {{ battle.heroName }}
+          </p>
+        </a>
+      </td>
+      <td [routerLink]="['/main/hero', battle.enemyId]">
+        <p>
+          {{ battle.enemyName }}
+        </p>
+      </td>
       <td>{{ battle.result }}</td>
     </tr>
   </tbody>
