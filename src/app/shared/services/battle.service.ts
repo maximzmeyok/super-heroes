@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BattleResult } from "../interfaces";
 import { DATE, ENEMY_NAME, HERO_NAME, RESULT } from "../variables";
 import { HeroesService } from "./heroes.service";
+import { PowerUpsService } from "./power-ups.service";
 
 @Injectable()
 export class BattleService {
@@ -10,6 +11,7 @@ export class BattleService {
 
   constructor(
     private _heroesService: HeroesService,
+    private _powerUpsService: PowerUpsService,
   ) { }
 
   public sortBattlesHistory(filter: string): void {
@@ -29,10 +31,6 @@ export class BattleService {
     }
   }
 
-  private _compareStrings(a: string, b: string): number {
-    return a.localeCompare(b);
-  }
-
   public changePowerstat(powerstat: string): void {
     const isUppedPowerstat: boolean = this.uppedPowerstats.some((uppedPowerstat: string): boolean => uppedPowerstat ===  powerstat);
 
@@ -46,6 +44,23 @@ export class BattleService {
     this.uppedPowerstats = [];
   }
 
+  public getBattleResult(): BattleResult {
+    const battleResult: string = this._heroesService.compareHeroes();
+    const battleResultFull: BattleResult = this._createBattleResult(battleResult);
+
+    this.battlesHistory.push(battleResultFull);
+
+    return battleResultFull;
+  }
+
+  public updatePowerUps(): void {
+    this._powerUpsService.changePowerUps(this.uppedPowerstats);
+  }
+
+  private _compareStrings(a: string, b: string): number {
+    return a.localeCompare(b);
+  }
+
   private _usePowerUp(powerstat: string): void {
     this.uppedPowerstats.push(powerstat);
     this._heroesService.upPowerstat(powerstat);
@@ -56,5 +71,16 @@ export class BattleService {
 
     this.uppedPowerstats.splice(uppedPowerstatIndex, 1);
     this._heroesService.downPowerstat(powerstat);
+  }
+
+  private _createBattleResult(battleResult: string): BattleResult {
+    return {
+      date: Date.now(),
+      heroName: this._heroesService.selectedHero.name,
+      heroId: this._heroesService.selectedHero.id,
+      enemyName: this._heroesService.enemyHero.name,
+      enemyId: this._heroesService.enemyHero.id,
+      result: battleResult
+    }
   }
 }
