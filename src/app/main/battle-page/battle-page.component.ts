@@ -81,9 +81,10 @@ export class BattlePageComponent implements OnDestroy {
 
   public replaceEnemy(): void {
     this._heroesService.getRandomHero().subscribe((apiResponse: Hero): void => {
-      const responseStatus: string = apiResponse.response;
+      const isValidHero: boolean = this._heroesService.isValidHero(apiResponse);
 
-      if (responseStatus !== 'success') {
+      if (!isValidHero) {
+        this.replaceEnemy();
         return;
       }
 
